@@ -12,6 +12,7 @@ const sourceOf=t=>t.source||"X";
 const sourceName=s=>s==="小红书"?w("Rednote","小红书"):s;
 const years=[...new Set(conversations.flatMap(t=>t.rows.map(r=>r.date?.slice(0,4)).filter(Boolean)))].sort().reverse();
 const search=new Map(conversations.map(t=>[t,norm(t.rows.map(r=>[r.by,r.text].join(" ")).join("\n"))]));
+$("blog-nav").href="blog.html?lang="+lang;$("blog-nav").textContent=w("Blog","博客");
 const label=w("Conversations","对话串");
 $("title").textContent=label;$("home").textContent=w("Forever Lilia","永远的狸狸亚");document.title=label+" · "+$("home").textContent;
 $("home").href="index.html?lang="+lang;$("photos").href=$("home").getAttribute("href")+"#collection";$("photos").textContent=w("Photographs","照片");

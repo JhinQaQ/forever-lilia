@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>博客 · 永远的狸狸亚</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="tribute.css">
+  <link rel="stylesheet" href="conversations.css">
+  <style>
+    .discussion article {border-top:1px solid var(--line); margin-top:1.8rem; padding:1.45rem 0}
+    .discussion article h2 {font-size:clamp(1.55rem,3.3vw,2.4rem); line-height:1.4; margin:0 0 .35rem}
+    .discussion article p {margin:.3rem 0}
+  </style>
+</head>
+<body>
+  <header>
+    <a class="wordmark" id="home" href="index.html?lang=zh">永远的狸狸亚</a>
+    <div class="top-actions">
+      <a id="photos" href="index.html?lang=zh#collection">照片</a>
+      <a id="threads" href="conversations.html?lang=zh">对话串</a>
+      <a data-admin hidden></a>
+    </div>
+    <nav aria-label="Language / 语言"><a lang="en" href="?lang=en">English</a><a lang="zh-Hans" href="?lang=zh">中文</a></nav>
+  </header>
+  <main class="discussion">
+    <div class="section-title-row"><h1 id="title">博客</h1><p class="section-rubric" id="blog-line">你是个理想主义者，且永远都是</p></div>
+    <article id="city-space">
+      <h2 lang="zh-Hant">談談《城市空間的哲學實踐》</h2>
+      <p class="meta" id="byline">狸狸亚</p>
+      <a class="browse" id="original-article" href="https://mp.weixin.qq.com/s/fm4X6XcBQblKFNnqx6KTpw" target="_blank" rel="noopener noreferrer">在微信读原文</a>
+    </article>
+  </main>
+  <footer id="poem"></footer>
+  <script src="tribute.js"></script>
+  <script>
+    const lang=(new URLSearchParams(location.search).get("lang") || navigator.language).startsWith("zh")?"zh":"en";
+    const zh=lang==="zh";
+    const get=id=>document.getElementById(id);
+    document.documentElement.lang=zh?"zh-Hans":"en";
+    get("home").textContent=zh?"永远的狸狸亚":"Forever Lilia";
+    get("home").href="index.html?lang="+lang;
+    get("photos").textContent=zh?"照片":"Photographs";
+    get("photos").href="index.html?lang="+lang+"#collection";
+    get("threads").textContent=zh?"对话串":"Conversations";
+    get("threads").href="conversations.html?lang="+lang;
+    get("title").textContent=zh?"博客":"Blog";
+    get("byline").textContent=zh?"狸狸亚":"Lilia";
+    get("original-article").textContent=zh?"在微信读原文":"Read the original on WeChat";
+    document.title=get("title").textContent+" · "+get("home").textContent;
+    for(const link of document.querySelectorAll("nav a")){
+      const locale=link.lang==="en"?"en":"zh";
+      link.href="?lang="+locale+location.hash;
+      link.setAttribute("aria-current",String(locale===lang));
+    }
+    LiliaTribute.admin(document.querySelector("[data-admin]"),lang);
+    LiliaTribute.heading(get("blog-line"),lang,"writing");
+    LiliaTribute.show(get("poem"),lang,"writing","city-space");
+  </script>
+</body>
+</html>

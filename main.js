@@ -73,6 +73,7 @@ function setup(values){
   $("intro").textContent=LiliaTribute.intro[lang];
   LiliaTribute.identity($("identity"),lang);LiliaTribute.admin(document.querySelector("[data-admin]"),lang);
   LiliaTribute.heading($("photos-line"),lang,"photo");LiliaTribute.heading($("entry-line"),lang,"photo");
+  $("blog-nav").href="blog.html?lang="+lang;$("blog-nav").textContent=lang==="zh"?"博客":"Blog";
   $("thread-nav").href="conversations.html?lang="+lang;$("thread-nav").textContent=lang==="zh"?"对话串":"Conversations";
   $("cover").alt=c.credit;$("hero-open").setAttribute("aria-label",c.credit);
   for(const k of Object.keys(facets)){
